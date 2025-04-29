@@ -6,7 +6,7 @@ Questo progetto  permette di eseguire un'istanza di **PostgreSQL** all'interno d
  Assicurati di avere installato:
 - **Docker**: [Guida all'installazione di Docker](https://www.docker.com/products/docker-desktop)
 - **Docker Compose** (facoltativo, ma utile per automatizzare il setup)
-- 
+
 
 ## ⚙️ **Setup del Container PostgreSQL**
 
@@ -28,13 +28,18 @@ Questo ti darà l'accesso alla shell del container, dove potrai eseguire comandi
 4. Verifica lo stato del container:
 docker ps
 
-5. Interazione con il Database
+## 🔧 Interazione con il Database
 Puoi accedere alla shell di PostgreSQL utilizzando il seguente comando:
 docker exec -it postgres-container psql -U postgres
 
-2. Creazione di un Database:
+Creazione di un Database:
 Per creare un nuovo database all'interno del container, esegui il comando:
-
 CREATE DATABASE my_database;
 
-### 1. **Avvia il Container PostgreSQL**
+🔄 Gestione del Database
+ definite le istruzioni DDL e DML del database, si può esportare una tabella o il database stesso in un file sql 
+
+ docker exec -t postgres-container pg_dump -U postgres my_database > my_database_dump.sql
+
+per importare invece un file sql 
+docker exec -i postgres-container psql -U postgres my_database < my_database_dump.sql
